@@ -21,7 +21,8 @@ body {
 
 .container {
   margin: 30px auto;
-  width: 350px;
+  /* changed it from 350px */
+  width: 500px;
 }
 
 h1 {
