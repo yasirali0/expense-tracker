@@ -1,7 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../Context/GlobalState'
-// to generate unique ids fas keys for li items
-// import { uuid } from 'uuid/dist/v5'
 
 export const AddTransaction = () => {
 
@@ -16,11 +14,15 @@ export const AddTransaction = () => {
         const newTransaction = {
             id: Math.floor(Math.random() * 100000000),
             text, // can grab it from state defined above
-            amount: +amount // as the amount is passed as string we convert it to number by this +amount syntax
+            amount: Number(amount) // as the amount is passed as string we convert it to number
         }
 
         // call addTransaction from context and pass the newTransaction
         addTransaction(newTransaction)
+
+        setText('')  // to clear the text field
+        setAmount(0) // to clear the amount field
+
     } 
     return (
         <>
@@ -28,7 +30,7 @@ export const AddTransaction = () => {
             <form onSubmit={onSubmitHandler}>
                 <div className='form-control'>
                     <label htmlFor='text'>Text</label>
-                    <input type='text' value={text} onChange={(e) => setText(e.target.value)} placeholder='Enter text...' />
+                    <input type='text' value={text} onChange={(e) => setText(e.target.value)} placeholder='Enter description...' />
                 </div>
                 <div className='form-control'>
                     <label htmlFor='amount'>
@@ -38,7 +40,7 @@ export const AddTransaction = () => {
                     </label>
                     <input type='number' value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='Enter amount...' />
                 </div>
-                <button className='btn'>Add Transaction</button>
+                <button className='btn' disabled={amount === 0 ? true : false}>Add Transaction</button>
             </form>
         </>
     )

@@ -89,7 +89,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #2c9695;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -99,6 +99,17 @@ input[type='number'] {
   padding: 10px;
   width: 100%;
 }
+
+
+/* added by me */
+.btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+/* added by me */
+
+
 
 .btn:focus,
 .delete-btn:focus {
