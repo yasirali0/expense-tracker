@@ -1,0 +1,32 @@
+name: Expense Tracker app using React
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Deploying expense-tracker app to surge
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install nodejs
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 12
+    
+    - name: Install yarn
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install
+
+    - name: Install surge
+      run: yard global add surge
+    
+    - name: build app
+      run: yarn build
+
+    - name: Run surge
+      run: surge ./build yasir-expense-tracker.surge.sh --token ${{ secrets.SURGE_TOKEN }}
