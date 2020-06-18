@@ -4,7 +4,7 @@ import { GlobalContext } from '../Context/GlobalState'
 export const AddTransaction = () => {
 
     const [text, setText] = useState('')
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState('')
 
     const { addTransaction } = useContext(GlobalContext)
 
@@ -21,7 +21,7 @@ export const AddTransaction = () => {
         addTransaction(newTransaction)
 
         setText('')  // to clear the text field
-        setAmount(0) // to clear the amount field
+        setAmount('') // to clear the amount field
 
     } 
     return (
@@ -40,7 +40,7 @@ export const AddTransaction = () => {
                     </label>
                     <input type='number' value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='Enter amount...' />
                 </div>
-                <button className='btn' disabled={amount === 0 ? true : false}>Add Transaction</button>
+                <button className='btn' disabled={Number(amount) === 0 | amount.length < 1 ? true : false}>Add Transaction</button>
             </form>
         </>
     )
