@@ -28,19 +28,44 @@ export const AddTransaction = () => {
         <>
             <h3>Add new transaction</h3>
             <form onSubmit={onSubmitHandler}>
+                
                 <div className='form-control'>
-                    <label htmlFor='text'>Text</label>
-                    <input type='text' value={text} onChange={(e) => setText(e.target.value)} placeholder='Enter description...' />
+                    <label htmlFor='text'>Description</label>
+
+                    <input 
+                    type='text' 
+                    value={text} 
+                    onChange={(e) => setText(e.target.value)} 
+                    placeholder='Enter description of your transaction...' 
+                    />
                 </div>
+
                 <div className='form-control'>
-                    <label htmlFor='amount'>
-                        Amount
-                        <br />
-                        (Negative - expense, Positive - income)
-                    </label>
-                    <input type='number' value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='Enter amount...' />
+                    
+                    <label htmlFor='amount'>Amount</label>
+                    
+                    <input 
+                    type='number' 
+                    value={amount} 
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder='Enter amount...' 
+                    />
                 </div>
-                <button className='btn' disabled={Number(amount) === 0 | amount.length < 1 ? true : false}>Add Transaction</button>
+                <div className='add-btns'>
+                    
+                    <button 
+                    className='btn' 
+                    disabled={Number(amount) <= 0 | amount.length < 1 ? true : false}>
+                        Add as Income
+                    </button>
+                    
+                    <button 
+                    className='btn btn-expense' 
+                    onClick={() => setAmount(amount * -1)} 
+                    disabled={Number(amount) <= 0 | amount.length < 1 ? true : false}>
+                        Add as Expense
+                    </button>
+                </div>
             </form>
         </>
     )

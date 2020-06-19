@@ -93,21 +93,27 @@ input[type='number'] {
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
-  display: block;
   font-size: 16px;
   margin: 10px 0 30px;
   padding: 10px;
-  width: 100%;
+  width: 48%;
 }
 
+.add-btns {
+  display: flex;
+  justify-content: space-between;
+}
 
-/* added by me */
-.btn:disabled {
+.btn-expense {
+  background-color: red;
+  color: white;
+}
+
+.btn:disabled  {
   background-color: #cccccc;
   color: #666666;
   cursor: not-allowed;
 }
-/* added by me */
 
 
 
