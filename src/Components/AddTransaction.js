@@ -5,20 +5,32 @@ export const AddTransaction = () => {
 
     const [text, setText] = useState('')
     const [amount, setAmount] = useState('')
+    const [expBtn, setExpBtn] = useState(false) // this state keeps track of whether the expense button is clicked or not
 
     const { addTransaction } = useContext(GlobalContext)
 
+    // form submit handler
     const onSubmitHandler = e => {
         e.preventDefault()
 
-        const newTransaction = {
-            id: Math.floor(Math.random() * 100000000),
-            text, // can grab it from state defined above
-            amount: Number(amount) // as the amount is passed as string we convert it to number
+        if (expBtn === true) {
+            const newTransaction = {
+                id: Math.floor(Math.random() * 100000000),
+                text, // can grab it from state defined above
+                amount: -amount
+            }
+            setExpBtn(false)
+            addTransaction(newTransaction) // call addTransaction from context and pass the newTransaction
+        }
+        else {
+            const newTransaction = {
+                id: Math.floor(Math.random() * 100000000),
+                text, // can grab it from state defined above
+                amount: +amount // as the amount is passed as string we convert it to number
+            }
+            addTransaction(newTransaction) // call addTransaction from context and pass the newTransaction
         }
 
-        // call addTransaction from context and pass the newTransaction
-        addTransaction(newTransaction)
 
         setText('')  // to clear the text field
         setAmount('') // to clear the amount field
@@ -52,16 +64,15 @@ export const AddTransaction = () => {
                     />
                 </div>
                 <div className='add-btns'>
-                    
                     <button 
                     className='btn' 
                     disabled={Number(amount) <= 0 | amount.length < 1 ? true : false}>
                         Add as Income
                     </button>
                     
-                    <button 
-                    className='btn btn-expense' 
-                    onClick={() => setAmount(amount * -1)} 
+                    <button
+                    className='btn btn-expense'
+                    onClick={() => setExpBtn(true)}
                     disabled={Number(amount) <= 0 | amount.length < 1 ? true : false}>
                         Add as Expense
                     </button>
