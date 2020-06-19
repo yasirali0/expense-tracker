@@ -38,11 +38,11 @@ export const AddTransaction = () => {
     } 
     return (
         <>
-            <h3>Add new transaction</h3>
+            <hr />
             <form onSubmit={onSubmitHandler}>
                 
                 <div className='form-control'>
-                    <label htmlFor='text'>Description</label>
+                    <label htmlFor='text'>Add Description</label>
 
                     <input 
                     type='text' 

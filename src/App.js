@@ -6,6 +6,7 @@ import { IncomeExpense } from './Components/IncomeExpense'
 import { TransactionList } from './Components/TransactionList';
 import { AddTransaction } from './Components/AddTransaction';
 import { GlobalProvider } from './Context/GlobalState';
+import { Footer } from './Components/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <IncomeExpense />
         <TransactionList />
         <AddTransaction />
+        <Footer />
       </div>
     </GlobalProvider>
   );
