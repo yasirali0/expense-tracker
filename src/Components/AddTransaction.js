@@ -13,23 +13,19 @@ export const AddTransaction = () => {
     const onSubmitHandler = e => {
         e.preventDefault()
 
+        const newTransaction = {
+            id: Math.floor(Math.random() * 100000000),
+            text, // can grab it from state defined above
+            amount: +amount // as the amount is passed as string we convert it to number
+        }
+
+        // check whether expense button is  clicked, if yes then change amount to -amount
         if (expBtn === true) {
-            const newTransaction = {
-                id: Math.floor(Math.random() * 100000000),
-                text, // can grab it from state defined above
-                amount: -amount
-            }
+            newTransaction.amount = -amount
             setExpBtn(false)
-            addTransaction(newTransaction) // call addTransaction from context and pass the newTransaction
         }
-        else {
-            const newTransaction = {
-                id: Math.floor(Math.random() * 100000000),
-                text, // can grab it from state defined above
-                amount: +amount // as the amount is passed as string we convert it to number
-            }
-            addTransaction(newTransaction) // call addTransaction from context and pass the newTransaction
-        }
+        
+        addTransaction(newTransaction) // call addTransaction from context and pass the newTransaction
 
 
         setText('')  // to clear the text field
