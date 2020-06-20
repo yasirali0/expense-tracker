@@ -5,9 +5,10 @@ const styles = {
 }
 
 export const Header = () => {
+
     return (
-        <h2 style={styles}>
-          Expense Tracker  
-        </h2>
+          <h2 style={styles}>
+            <center>Expense Tracker</center>  
+          </h2>
     )
 }
